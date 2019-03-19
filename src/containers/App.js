@@ -9,9 +9,15 @@ class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			cats: cats,
+			cats: [],
 			searchfield: ''
 		}
+	}
+
+	componentDidMount() {
+		fetch('https://jsonplaceholder.typicode.com/users')
+			.then(response => response.json())
+			.then(users => {this.setState({ cats: users})});
 	}
 
 	onSearchChange = (event) => {
