@@ -3,7 +3,6 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import './App.css';
 import Scroll from '../components/Scroll';
-import { cats } from '../cats';
 
 class App extends Component {
 	constructor() {
