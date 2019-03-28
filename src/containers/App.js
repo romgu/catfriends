@@ -5,7 +5,8 @@ import { setSearchField, requestCats } from '../actions.js'
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
-import Header from '../components/Header'
+import ErrorBoundry from '../components/ErrorBoundry';
+import Header from '../components/Header';
 
 import './App.css';
 
@@ -36,14 +37,16 @@ class App extends Component {
 		const filteredCats = cats.filter(cat => {
 			return cat.name.toLowerCase().includes(searchField.toLowerCase());
 		});
-		return isPending ? 
-		<h1>Loading</h1> :
-		(
+		return (
 			<div className="tc">
 				<Header />
-				<SearchBox searchChange={onSearchChange} />
+				<SearchBox searchChange={onSearchChange} />	
 				<Scroll>
-					<CardList cats={filteredCats} />
+					{ isPending ? <h1>Loading...</h1> :
+					<ErrorBoundry>
+						<CardList cats={filteredCats} />
+					</ErrorBoundry>
+					}
 				</Scroll>
 			</div>
 		);	
