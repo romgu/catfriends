@@ -10,7 +10,7 @@ const SearchBox = ({ searchfield, searchChange }) =>{
 			onChange={searchChange} 
 			/>
 		</div>
-		);
+	);
 }
 
 export default SearchBox;
