@@ -4,7 +4,7 @@ import { setSearchField, requestCats } from '../actions.js'
 
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
-import Scroll from '../components/Scroll';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Header from '../components/Header'
 
 import './App.css';
@@ -42,9 +42,9 @@ class App extends Component {
 			<div className="tc">
 				<Header />
 				<SearchBox searchChange={onSearchChange} />
-				<Scroll>
+				<Scrollbars style={{ width:'100%', height:'80vh' }}>
 					<CardList cats={filteredCats} />
-				</Scroll>
+				</Scrollbars>
 			</div>
 		);	
 	}
