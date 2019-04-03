@@ -12,11 +12,14 @@ class MainPage extends Component {
 		this.props.onRequestCats();
 	}
 
-	render () {
-		const { searchField, onSearchChange, cats, isPending } = this.props;
-		const filteredCats = cats.filter(cat => {
-			return cat.name.toLowerCase().includes(searchField.toLowerCase());
+	filteredCats = () => {
+		return this.props.cats.filter(cat => {
+			return cat.name.toLowerCase().includes(this.props.searchField.toLowerCase());
 		});
+	}
+
+	render () {
+		const { onSearchChange, cats, isPending } = this.props;
 		return isPending ? 
 		<h1>Loading</h1> :
 		(
@@ -24,7 +27,7 @@ class MainPage extends Component {
 				<Header />
 				<SearchBox searchChange={onSearchChange} />
 				<Scrollbars style={{ width:'100%', height:'80vh' }}>
-					<CardList cats={filteredCats} />
+					<CardList cats={this.filteredCats()} />
 				</Scrollbars>
 			</div>
 		);	
